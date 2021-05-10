@@ -1,5 +1,6 @@
-export default function Menu() {
+export default function Menu({ onNew }) {
     const handleClick = (e) => {
+        onNew();
     }
     return (
         <div className='menu'>
