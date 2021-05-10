@@ -8,43 +8,48 @@ import List from './components/list';
 import Item from './components/item';
 import Editor from './components/editor';
 import Preview from './components/preview';
+import uuid from 'react-uuid';
 
 function App() {
 
     // const [nombre, setNombre] = useState('Alejandro');
-    const [items, setiItems] = useState([
-        {
-            id: 0,
-            title: 'Mi primer nota',
-            text: '# Hola a todos',
+    const [items, setiItems] = useState([]);
+
+    const handleNew = () => {
+        const note = {
+            id: uuid(),
+            title: '',
+            text: '',
             pinned: false,
             created: Date().now
-        },
-        {
-            id: 1,
-            title: 'Mi segunda nota',
-            text: '# Hola a todos',
-            pinned: true,
-            created: Date().now
-        },
+        };
 
-    ]);
+        setiItems([...items, note]);
+    };
+
+    const handlePinned = () => {
+
+    };
+
+    const handleSelectNote = () => {
+
+    };
 
     return (
         <div className='App container2'>
             <Panel>
-                <Menu />
+                <Menu onNew={handleNew} />
                 <List>
                     {
                         items.map((item, i) => {
-                            return <Item key={item.id} item={item} />
+                            return <Item key={item.id} item={item} index={i} onHandlePinned={handlePinned} onHandleSelectNote={handleSelectNote} />
                         })
                     }
                 </List>
             </Panel>
             <>
                 <Editor />
-                <Preview/>
+                <Preview />
             </>
         </div>
     );
