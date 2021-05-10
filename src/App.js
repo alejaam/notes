@@ -4,6 +4,8 @@ import './App.css';
 import Mensaje from './components/mensaje';
 import Panel from './components/panel';
 import Menu from './components/menu';
+import List from './components/list';
+import Item from './components/item';
 
 function App() {
 
@@ -30,20 +32,13 @@ function App() {
         <div className='App container2'>
             <Panel>
                 <Menu />
-                <div className='list'>
+                <List>
                     {
                         items.map((item, i) => {
-                            return <div key={item.id} className='note'>
-                                <div>
-                                    {item.title === '' ? '[Sin titulo]' : item.title.substring(0, 20)}
-                                </div>
-                                <div>
-                                    <button className='pinButton'>{item.pinned ? 'Pinned' : 'Pin'}</button>
-                                </div>
-                            </div>
+                            return <Item key={item.id} item={item} />
                         })
                     }
-                </div>
+                </List>
             </Panel>
             <div className='editor'>
                 <div>
