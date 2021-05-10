@@ -14,6 +14,8 @@ function App() {
 
     // const [nombre, setNombre] = useState('Alejandro');
     const [items, setiItems] = useState([]);
+    const [actualIndex, setActualIndex] = useState(-1);
+    const [copyItems, setcopyItems] = useState();
 
     const handleNew = () => {
         const note = {
@@ -31,8 +33,10 @@ function App() {
 
     };
 
-    const handleSelectNote = () => {
-
+    const handleSelectNote = (item, e) => {
+        if (!e.target.classList.contains('note')) return;
+        const index = items.findIndex(x => x == item);
+        setActualIndex(index);
     };
 
     return (
@@ -42,7 +46,7 @@ function App() {
                 <List>
                     {
                         items.map((item, i) => {
-                            return <Item key={item.id} item={item} index={i} onHandlePinned={handlePinned} onHandleSelectNote={handleSelectNote} />
+                            return <Item key={item.id} actualIndex={actualIndex} item={item} index={i} onHandlePinned={handlePinned} onHandleSelectNote={handleSelectNote} />
                         })
                     }
                 </List>
