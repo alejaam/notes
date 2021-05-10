@@ -2,6 +2,7 @@ import { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Mensaje from './components/mensaje';
+import Panel from './components/componentes';
 
 function App() {
 
@@ -38,7 +39,7 @@ function App() {
 
     return (
         <div className='App container2'>
-            <div className='panel'>
+            <Panel>
                 <div className='menu'>
                     <input className='form search' placeholder='Buscar...' />
                     <button className='btn' onClick={handleClick}>+ Nueva nota</button>
@@ -57,10 +58,10 @@ function App() {
                         })
                     }
                 </div>
-            </div>
+            </Panel>
             <div className='editor'>
                 <div>
-                    <input className='title'/>
+                    <input className='title' />
                 </div>
                 <div className='editor-textarea'>
                     <textarea className='content'>
@@ -68,7 +69,7 @@ function App() {
                 </div>
             </div>
             <div className='preview'>
-  
+
             </div>
         </div>
     );
