@@ -6,6 +6,8 @@ import Panel from './components/panel';
 import Menu from './components/menu';
 import List from './components/list';
 import Item from './components/item';
+import Editor from './components/editor';
+import Preview from './components/preview';
 
 function App() {
 
@@ -40,18 +42,10 @@ function App() {
                     }
                 </List>
             </Panel>
-            <div className='editor'>
-                <div>
-                    <input className='title' />
-                </div>
-                <div className='editor-textarea'>
-                    <textarea className='content'>
-                    </textarea>
-                </div>
-            </div>
-            <div className='preview'>
-
-            </div>
+            <>
+                <Editor />
+                <Preview/>
+            </>
         </div>
     );
 }
