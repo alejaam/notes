@@ -2,7 +2,8 @@ import { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Mensaje from './components/mensaje';
-import Panel from './components/componentes';
+import Panel from './components/panel';
+import Menu from './components/menu';
 
 function App() {
 
@@ -25,25 +26,10 @@ function App() {
 
     ]);
 
-    const handleClick = (e) => {
-        const note = {
-            id: 2,
-            title: 'Mi tercera nota',
-            text: '# Hola a todos',
-            pinned: false,
-            created: Date().now
-        };
-
-        setiItems([...items, note]);
-    }
-
     return (
         <div className='App container2'>
             <Panel>
-                <div className='menu'>
-                    <input className='form search' placeholder='Buscar...' />
-                    <button className='btn' onClick={handleClick}>+ Nueva nota</button>
-                </div>
+                <Menu />
                 <div className='list'>
                     {
                         items.map((item, i) => {
