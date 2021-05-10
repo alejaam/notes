@@ -20,8 +20,8 @@ function App() {
     const handleNew = () => {
         const note = {
             id: uuid(),
-            title: '',
-            text: '',
+            title: 'acaca',
+            text: 'sdfscacadfsdf',
             pinned: false,
             created: Date().now
         };
@@ -39,6 +39,28 @@ function App() {
         setActualIndex(index);
     };
 
+    const onChangeTitle = (e) => {
+        const title = e.target.value;
+        let notes = [...items];
+        notes[actualIndex].title = title;
+        setiItems(notes);
+    }
+    const onChangeText = (e) => {
+        const text = e.target.value;
+        let notes = [...items];
+        notes[actualIndex].text = text;
+        setiItems(notes);
+    }
+    const renderEditorAndPreviewUI = (items) => {
+        return (
+            <>
+                <Editor item={items[actualIndex]} onChangeTitle={onChangeTitle} onChangeText={onChangeText} />
+                <Preview text={items[actualIndex].text} />
+            </>
+
+        );
+    }
+
     return (
         <div className='App container2'>
             <Panel>
@@ -52,8 +74,9 @@ function App() {
                 </List>
             </Panel>
             <>
-                <Editor />
-                <Preview />
+                {
+                    (actualIndex >= 0) ? renderEditorAndPreviewUI(items) : ''
+                }
             </>
         </div>
     );

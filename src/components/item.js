@@ -1,6 +1,4 @@
-export default function Item({item, onHandlePinned, onHandleSelectNote, index, actualIndex}) {
-    console.log(item);
-
+export default function Item({ item, onHandlePinned, onHandleSelectNote, index, actualIndex }) {
     const handlePinned = () => {
         onHandlePinned(item, index);
     };
@@ -9,8 +7,7 @@ export default function Item({item, onHandlePinned, onHandleSelectNote, index, a
         onHandleSelectNote(item, e);
     };
     return (
-        
-        <div key={item.id} className={(index === actualIndex)? 'note activeNote' : 'note'} onClick={(e) => handleClick(item, e)}>
+        <div key={item.id} className={(index === actualIndex) ? 'note activeNote' : 'note'} onClick={(e) => handleClick(item, e)}>
             <div>
                 {item.title === '' ? '[Sin titulo]' : item.title.substring(0, 20)}
             </div>
