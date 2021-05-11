@@ -26,13 +26,37 @@ function App() {
             created: Date().now
         };
 
-        setiItems([...items, note]);
+        setiItems([note, ...items]);
     };
 
-    const handlePinned = () => {
+    const handlePinned = (item, i) => {
+        setActualIndex(i);
+        let iud = item.id;
+        let notes = [...items];
+        notes[i].pinned = !notes[i].pinned;
+
+        let res = getOrderedNotes(notes);
+
+        setiItems(res);
+        let index = res.findIndex(x => x.id == i)
+    };
+
+    const getOrderedNotes = (arr) => {
+        let items = [...arr];
+        let pinned = items.filter(x => x.pinned === true);
+        let rest = items.filter(x => x.pinned === false);
+
+        pinned = sortByDate(pinned, true);
+        rest = sortByDate(rest, true);
+
+        return [...pinned, ...rest]
 
     };
 
+    const sortByDate = (arr, asc = false) => {
+        if (asc) return arr.sort((a, b) => new Date(b.created) - new Date(a.created) && b.pinned);
+        return arr.sort((a, b) => new Date(a.created) - new Date(b.created) && b.pinned);
+    }
     const handleSelectNote = (item, e) => {
         if (!e.target.classList.contains('note')) return;
         const index = items.findIndex(x => x == item);
